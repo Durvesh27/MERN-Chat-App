@@ -20,7 +20,7 @@ if (userData.email && userData.password) {
         setUserData({ email: "", password: "" })
         router('/')
         toast.success(response.data.message)
-        localStorage.setItem("Token",JSON.stringify(response.data.token))
+        localStorage.setItem("ChatToken",JSON.stringify(response.data.token))
         Login(response.data.user)
   }
     } catch(error){

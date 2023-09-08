@@ -8,7 +8,7 @@ const Register = () => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
-    pic: "",
+    pic:"",
     password: ""
   });
 
@@ -16,10 +16,9 @@ const Register = () => {
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-  const postDetails = (pics) => {
 
-  }
   const handleSubmit = async (e) => {
+   
     e.preventDefault();
     if (
       userData.name &&
@@ -27,12 +26,13 @@ const Register = () => {
       userData.pic &&
       userData.password 
     ) {
+      console.log("work")
         const response = await axios.post("http://localhost:5000/register", { userData });
         if (response.data.success) {
           setUserData({
             name: "",
             email: "",
-            pic: "",
+            pic:"",
             password: ""
           });
           toast.success(response.data.message);
@@ -72,9 +72,14 @@ const Register = () => {
         <label >Upload Profile pic</label>
         <input
           type="file"
-          p={1.5}
-          accept="image/*"
-          onChange={(e)=>postDetails(e.target.files[0])}
+          name="pic"
+          onChange={handleChange}
+          // p={1.5}
+          // accept="image/*"
+          // onChange={(e)=>postDetails(e.target.files[0])}
+          className="input"
+          value={userData.pic}
+          
         />
         <input
           type="password"
