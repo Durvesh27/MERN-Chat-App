@@ -3,9 +3,11 @@ import { useState } from "react";
 import './Form.css'
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import axios from "axios";
+import api from './../ApiConfig/index.js'
+import { ChatState } from "../../Context/chatProvider";
 const Login = () => {
 const router=useNavigate();
+const{setUser}=ChatState()
 const [userData,setUserData]=useState({email:"",password:""})
 const handleChange=(e)=>{
 setUserData({...userData,[e.target.name]:e.target.value})
@@ -15,13 +17,13 @@ const handleSubmit=async(e)=>{
 e.preventDefault();
 if (userData.email && userData.password) {
   try{
-    const response = await axios.post("http://localhost:5000/login", { userData });
+    const response = await api.post("/user/login", { userData });
     if (response.data.success) {
         setUserData({ email: "", password: "" })
         router('/')
         toast.success(response.data.message)
         localStorage.setItem("ChatToken",JSON.stringify(response.data.token))
-        Login(response.data.user)
+        setUser(response.data.user)
   }
     } catch(error){
         toast.error(error.response.data.message)

@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./Form.css";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import api from './../ApiConfig/index.js'
 const Register = () => {
   const [userData, setUserData] = useState({
     name: "",
@@ -23,11 +23,11 @@ const Register = () => {
     if (
       userData.name &&
       userData.email &&
-      userData.pic &&
-      userData.password 
+      userData.password&&
+      userData.pic
     ) {
-      console.log("work")
-        const response = await axios.post("http://localhost:5000/register", { userData });
+      try{
+        const response = await api.post("/user/register", { userData });
         if (response.data.success) {
           setUserData({
             name: "",
@@ -40,6 +40,9 @@ const Register = () => {
         } else {
           toast.error(response.data.message);
         }
+      }catch(error){
+        console.log(error,"Axxios")
+      }
     } else {
       toast.error("Please fill all the Fields");
     }
