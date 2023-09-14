@@ -30,12 +30,14 @@ import ChatLoading from "../Avatar/ChatLoading.jsx";
 import UserListItem from "../Avatar/UserListItem";
 
 const SideDrawer = () => {
-  const { user } = ChatState();
+  const { user,setSelectedChat,chats,setChats } = ChatState();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
-//   const [loadingChat, setLoadingChat] = useState();
+  const [loadingChat, setLoadingChat] = useState(false);
+
   const router = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem("ChatToken");
@@ -54,7 +56,18 @@ const SideDrawer = () => {
     toast.error("Failed to load search result") 
   }
   }
-  console.log(searchResult,"searchres")
+ const accessChat=async(userId)=>{
+  try{
+    setLoadingChat(true)
+    const {data}=await api.post("/chat",{userId})
+    if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+    setSelectedChat(data);
+    setLoadingChat(false);
+    onClose();
+  }catch(error){
+   toast.error(error.message)
+  }
+ }
   return (
     <>
       <Box
@@ -75,7 +88,7 @@ const SideDrawer = () => {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontFamily="Arial">
-          Chat Now
+          Chit-Chats
         </Text>
         <div>
           <Menu>
@@ -130,11 +143,12 @@ const SideDrawer = () => {
 <UserListItem
                   key={ele._id}
                   user={ele}
+                  handleFunction={()=>accessChat(ele._id)}
 />
     ))
 )
           }
-          {/* <Spinner ml="auto" display="flex" /> */}
+          {loadingChat && <Spinner ml="auto" display="flex" />}
         </DrawerBody>
         </DrawerContent>
       </Drawer>

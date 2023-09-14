@@ -2,12 +2,12 @@ import { Avatar } from "@chakra-ui/avatar";
 import { Box, Text } from "@chakra-ui/layout";
 import { ChatState } from '../../Context/chatProvider.js'
 
-const UserListItem = ({ user }) => {
+const UserListItem = ({ user ,handleFunction}) => {
 //   const { user } = ChatState();
 
   return (
     <Box
-    //   onClick={handleFunction}
+      onClick={handleFunction}
       cursor="pointer"
       bg="#E8E8E8"
       _hover={{

@@ -4,7 +4,7 @@ import Home from './Comonents/Common/Home';
 import Login from './Comonents/User/Login';
 import Register from './Comonents/User/Register';
 import ChatSection from './Comonents/Pages/ChatSection';
-
+import '../src/App.css'
 
 function App() {
   return (
