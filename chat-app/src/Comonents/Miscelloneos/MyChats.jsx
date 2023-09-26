@@ -8,13 +8,11 @@ import { AddIcon } from '@chakra-ui/icons';
 import ChatLoading from '../Avatar/ChatLoading';
 import { getSender } from '../Config/chatLogics.js';
 import GroupChatModal from './GroupChatModal';
-const MyChats = () => {
+const MyChats = ({fetchAgain}) => {
   const { user,selectedChat,setSelectedChat,chats,setChats } = ChatState();
-
   const fetchChats=async()=>{
   try{
   const{data}=await api.get("/chat")
-  console.log(data,"chats")
  setChats(data)
   }
   catch(error){
@@ -23,7 +21,7 @@ const MyChats = () => {
   }
   useEffect(()=>{
   fetchChats()
-  },[])
+  },[fetchAgain])
 
   return (
 <Box

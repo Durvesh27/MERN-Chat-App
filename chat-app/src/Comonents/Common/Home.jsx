@@ -4,7 +4,7 @@ import { ChatState } from '../../Context/chatProvider'
 
 const Home = () => {
   const{user}=ChatState()
-  console.log(user,"USer")
+  console.log(user,"ues")
   return (
     <div>
       <Box bg='tomato' w='100%' p={4} color='white'>

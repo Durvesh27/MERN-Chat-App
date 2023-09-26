@@ -6,7 +6,7 @@ export const accesschat = async (req, res) => {
   if (!userId) {
     return res.status(404).json({
       success: false,
-      message: "UserId param not sent with the request",
+      message: "UserId not sent with the request",
     });
   }
   var isChat = await Chat.find({

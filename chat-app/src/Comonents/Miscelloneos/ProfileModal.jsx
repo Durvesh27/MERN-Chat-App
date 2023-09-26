@@ -14,10 +14,8 @@ import {
 Text
 } from "@chakra-ui/react";
 import React from "react";
-import { ChatState } from "../../Context/chatProvider";
 
-const ProfileModal = ({ children }) => {
-  const{user}=ChatState()
+const ProfileModal = ({ user,children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
@@ -53,7 +51,6 @@ const ProfileModal = ({ children }) => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

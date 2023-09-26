@@ -41,7 +41,7 @@ const SideDrawer = () => {
   const router = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem("ChatToken");
-    router("/login");
+    router("/");
   };
   const handleSearch=async()=>{
     if(!search)
@@ -108,7 +108,7 @@ const SideDrawer = () => {
               ></Avatar>
             </MenuButton>
             <MenuList>
-              <ProfileModal>
+              <ProfileModal user={user}>
                 <MenuItem>My Profile</MenuItem>
               </ProfileModal>
               <MenuDivider />

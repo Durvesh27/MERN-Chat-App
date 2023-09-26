@@ -20,7 +20,7 @@ if (userData.email && userData.password) {
     const response = await api.post("/user/login", { userData });
     if (response.data.success) {
         setUserData({ email: "", password: "" })
-        router('/')
+        router('/chats')
         toast.success(response.data.message)
         localStorage.setItem("ChatToken",JSON.stringify(response.data.token))
         setUser(response.data.user)
@@ -36,7 +36,7 @@ if (userData.email && userData.password) {
 
   return (
     <div>
-   
+     
       <form onSubmit={handleSubmit} className="form">
       <h2 style={{textAlign:"center","marginBottom":"20px"}}>Login</h2>
         <input
