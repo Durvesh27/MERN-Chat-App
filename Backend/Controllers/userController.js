@@ -58,18 +58,19 @@ export const Login = async (req, res) => {
 
 export const getCurrentUser = async (req, res) => {
   try {
-    const { token } = req.body;
-    if (!token)
-      return res
-        .status(404)
-        .json({ status: "error", message: "Token is required" });
-    const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-    if (!decodedData) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Not a valid token" });
-    }
-    const userId = decodedData?.userId;
+    // const { token } = req.body;
+    // if (!token)
+    //   return res
+    //     .status(404)
+    //     .json({ status: "error", message: "Token is required" });
+    // const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+    // if (!decodedData) {
+    //   return res
+    //     .status(404)
+    //     .json({ success: false, message: "Not a valid token" });
+    // }
+    // const userId = decodedData?.userId;
+    const userId=req.user._id
     const user = await userModel.findById(userId);
 
     if (!user) {

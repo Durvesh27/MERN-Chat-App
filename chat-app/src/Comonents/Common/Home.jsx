@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <Box bg='tomato' w='100%' p={4} color='white'>
-  <h1>{user?.name}</h1>
+  {/* <h1>{user?.name}</h1> */}
 </Box>
       <Button colorScheme='blue'>Home</Button>
     </div>

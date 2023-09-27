@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ChatState } from '../../Context/chatProvider';
 import toast from 'react-hot-toast';
-import api from '../ApiConfig';
+import api from '../ApiConfig/index.js';
 import { useEffect } from 'react';
 import { Box, Button, Stack,Text } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';

@@ -10,14 +10,14 @@ const ChatProvider=({children})=>{
 const[user,setUser]=useState()
 const [selectedChat, setSelectedChat] = useState();
 const[chats,setChats]=useState([])
+console.log(user,"user")
 useEffect(() => {
     const getCurrentUserData = async () => {
       const token = JSON.parse(localStorage.getItem("ChatToken"));
-      if(token){
+      // if(token){
         try{
-          const response = await api.post(
-            "/user/get-current-user",
-            { token }
+          const response = await api.get(
+            "/user/get-current-user"
           );
           if (response.data.success) {
 setUser(response.data.user)
@@ -26,7 +26,7 @@ setUser(response.data.user)
         catch(error){
           console.log(error)
         }
-      }
+      // }
     };
     getCurrentUserData();
   }, []);

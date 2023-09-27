@@ -6,10 +6,11 @@
 width: 30%;
 height:70vh;
 margin: auto;
-border-radius: 32px;
+border-radius: 12px;
 padding: 50px 70px 70px;
 box-sizing: border-box;
 background-color: white;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 margin-top: 80px;
 /* position: relative; */
 position: fixed;

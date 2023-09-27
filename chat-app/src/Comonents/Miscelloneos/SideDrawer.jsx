@@ -51,7 +51,6 @@ const SideDrawer = () => {
     const response=await api.get(`/user?search=${search}`)
     setLoading(false)
     setSearchResult(response.data)
-    console.log(response.data,"datata")
   }catch(error){
     toast.error("Failed to load search result") 
   }
@@ -78,6 +77,7 @@ const SideDrawer = () => {
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
+        backgroundColor="	#F0FFFF"
       >
         <Tooltip label="Search user to Chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
@@ -88,7 +88,7 @@ const SideDrawer = () => {
           </Button>
         </Tooltip>
         <Text fontSize="2xl" fontFamily="Arial">
-          Chit-Chats
+         Let's Chat
         </Text>
         <div>
           <Menu>

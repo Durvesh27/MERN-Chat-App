@@ -36,7 +36,7 @@ const Register = () => {
             password: ""
           });
           toast.success(response.data.message);
-          router("/login");
+          router("/");
         } else {
           toast.error(response.data.message);
         }
@@ -50,7 +50,11 @@ const Register = () => {
 
   return (
     <div>
-       
+     <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU0UhELJroPOnXD07iIuaVAP4c_LUokUbklw&usqp=CAU"
+        alt=""
+        style={{ width: "430px", height: "100px",margin:"auto",paddingTop:"15px",boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+      />
       <form onSubmit={handleSubmit} className="form">
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Register</h2>
         <>
@@ -97,7 +101,7 @@ const Register = () => {
         </>
         <p>
           Already have an account?{" "}
-          <b style={{ color: "green" }} onClick={() => router("/login")}>
+          <b style={{ color: "green" }} onClick={() => router("/")}>
             Login
           </b>
         </p>

@@ -9,9 +9,9 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ChatProvider>
     <ChakraProvider>
      <BrowserRouter>
+     <ChatProvider>
      <Toaster
         position="top-center"
         reverseOrder={false}
@@ -38,8 +38,8 @@ root.render(
         }}
       />
      <App />
+     </ChatProvider>
      </BrowserRouter>
      </ChakraProvider>
-  </ChatProvider>
 );
 
