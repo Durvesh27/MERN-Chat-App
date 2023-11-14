@@ -3,7 +3,9 @@ import ScrollableFeed from "react-scrollable-feed";
 import { isLastMessage, isSameSender, isSameSenderMargin, isSameUser } from "../Config/chatLogics";
 import { Avatar, Tooltip } from "@chakra-ui/react";
 import { ChatState } from "../../Context/chatProvider";
-const ScrollbleChat = ({ messages }) => {
+import animationData from "./../Animations/Typing.json";
+import Lottie from "lottie-react";
+const ScrollbleChat = ({ messages,isTyping }) => {
   const { user } = ChatState()
   return (
     <ScrollableFeed>
@@ -37,8 +39,26 @@ const ScrollbleChat = ({ messages }) => {
             >
               {m.content}
             </span>
+            
           </div>
+          
         ))}
+        {isTyping ? (
+                <div style={{paddingTop:"20px",paddingLeft:"30px"}}>
+                  <Lottie
+                    animationData={animationData}
+                    loop={true}
+                    autoPlay={true}
+                    style={{
+                      width: 70,
+                      height:30,
+                
+                    }}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
     </ScrollableFeed>
   );
 };

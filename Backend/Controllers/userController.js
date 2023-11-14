@@ -6,7 +6,8 @@ import userModel from "../Models/userModel.js";
 export const Register = async (req, res) => {
   try {
       // console.log(userData,"userData")
-      const { name, email,pic,password} = req.body.userData
+      const { name, email,password} = req.body.userData
+      const {pic} = req.body
       if (!name || !email || !password ) return res.json({ success: false, message: "All fields are mandtory.." })
       const isEmailExist = await userModel.find({ email: email })
       if (isEmailExist.length) {
