@@ -18,8 +18,7 @@ import { useEffect } from "react";
 import "./../Style.css";
 import ScrollbleChat from "./ScrollbleChat";
 import io from "socket.io-client";
-import animationData from "./../Animations/Typing.json";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://chat-app-mern-8pzg.onrender.com";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
