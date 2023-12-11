@@ -1,12 +1,17 @@
 import React from "react";
 import ScrollableFeed from "react-scrollable-feed";
-import { isLastMessage, isSameSender, isSameSenderMargin, isSameUser } from "../Config/chatLogics";
+import {
+  isLastMessage,
+  isSameSender,
+  isSameSenderMargin,
+  isSameUser,
+} from "../Config/chatLogics";
 import { Avatar, Tooltip } from "@chakra-ui/react";
 import { ChatState } from "../../Context/chatProvider";
 import animationData from "./../Animations/Typing.json";
 import Lottie from "lottie-react";
-const ScrollbleChat = ({ messages,isTyping }) => {
-  const { user } = ChatState()
+const ScrollbleChat = ({ messages, isTyping }) => {
+  const { user } = ChatState();
   return (
     <ScrollableFeed>
       {messages &&
@@ -21,7 +26,7 @@ const ScrollbleChat = ({ messages,isTyping }) => {
                   size="sm"
                   cursor="pointer"
                   name={m.sender.name}
-                //   src={m.sender.pic}
+                  //   src={m.sender.pic}
                 />
               </Tooltip>
             )}
@@ -39,26 +44,23 @@ const ScrollbleChat = ({ messages,isTyping }) => {
             >
               {m.content}
             </span>
-            
           </div>
-          
         ))}
-        {isTyping ? (
-                <div style={{paddingTop:"20px",paddingLeft:"30px"}}>
-                  <Lottie
-                    animationData={animationData}
-                    loop={true}
-                    autoPlay={true}
-                    style={{
-                      width: 70,
-                      height:30,
-                
-                    }}
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
+      {isTyping ? (
+        <div style={{ paddingTop: "20px", paddingLeft: "30px" }}>
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            autoPlay={true}
+            style={{
+              width: 70,
+              height: 30,
+            }}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </ScrollableFeed>
   );
 };

@@ -23,7 +23,7 @@ const Register = () => {
     setPicLoading(true);
     if (userData.name && userData.email && userData.password) {
       try {
-        const response = await api.post("/user/register", { userData,pic });
+        const response = await api.post("/user/register", { userData, pic });
         if (response.data.success) {
           setUserData({
             name: "",
@@ -63,11 +63,8 @@ const Register = () => {
         method: "post",
         body: data,
       })
-        .then(res =>
-          res.json()
-        )
+        .then((res) => res.json())
         .then((data) => {
-          console.log(data, "data");
           setPic(data.url.toString());
           setPicLoading(false);
         })
@@ -84,13 +81,7 @@ const Register = () => {
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU0UhELJroPOnXD07iIuaVAP4c_LUokUbklw&usqp=CAU"
         alt=""
-        style={{
-          width: "430px",
-          height: "100px",
-          margin: "auto",
-          paddingTop: "15px",
-          boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-        }}
+        className="form-img"
       />
       <form onSubmit={handleSubmit} className="form">
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Register</h2>
@@ -133,7 +124,7 @@ const Register = () => {
             <input
               type="submit"
               value="Register"
-              style={{ backgroundColor: "yellow" }}
+              style={{ backgroundColor: "grey" }}
             />
           ) : (
             <input type="submit" value="Register" />

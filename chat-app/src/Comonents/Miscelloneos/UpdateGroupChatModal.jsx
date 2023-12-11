@@ -22,7 +22,7 @@ import UserBadgeItem from "../Avatar/UserBadgeItem";
 import toast from "react-hot-toast";
 import api from "../ApiConfig";
 import UserListItem from "../Avatar/UserListItem";
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
   const [renameLoading, setRenameLoading] = useState(false);
@@ -68,30 +68,27 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
 
   const handleAddUser = async (user1) => {
     if (selectedChat.users.find((u) => u._id === user1._id)) {
-toast("User Already in group")
+      toast("User Already in group");
       return;
     }
 
     if (selectedChat.groupAdmin._id !== user._id) {
-toast("Only admins can add someone!")
+      toast("Only admins can add someone!");
       return;
     }
 
     try {
       setLoading(true);
-      const { data } = await api.put(
-        `/chat/group-add`,
-        {
-          chatId: selectedChat._id,
-          userId: user1._id,
-        }
-      );
+      const { data } = await api.put(`/chat/group-add`, {
+        chatId: selectedChat._id,
+        userId: user1._id,
+      });
 
       setSelectedChat(data);
       setFetchAgain(!fetchAgain);
       setLoading(false);
     } catch (error) {
-      toast("error")
+      toast("error");
       setLoading(false);
     }
     setGroupChatName("");

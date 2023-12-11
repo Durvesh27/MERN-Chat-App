@@ -16,7 +16,6 @@ import api from "../ApiConfig";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import "./../Style.css";
-import Lottie, { useLottie } from "lottie-react";
 import ScrollbleChat from "./ScrollbleChat";
 import io from "socket.io-client";
 import animationData from "./../Animations/Typing.json";
@@ -32,16 +31,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false);
 
   const { user, selectedChat, setSelectedChat } = ChatState();
-
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  const { View } = useLottie(defaultOptions);
   const fetchMessages = async () => {
     if (!selectedChat) return;
     try {
@@ -91,7 +80,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         !selectedChatCompare ||
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
-        //give notification
+        //notification
         // setFetchAgain(!fetchAgain)
       } else {
         setMessages([...messages, newMessageRecieved]);
@@ -174,17 +163,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 margin="auto"
               />
             ) : (
-              <div className="messages" >
-                <ScrollbleChat messages={messages} isTyping={isTyping}/>
+              <div className="messages">
+                <ScrollbleChat messages={messages} isTyping={isTyping} />
               </div>
             )}
 
-            <FormControl
-              onKeyDown={sendMessage}
-              isRequired
-              mt={5}
-            >
-              
+            <FormControl onKeyDown={sendMessage} isRequired mt={5}>
               <Input
                 variant="filled"
                 bg="#E0E0E0"

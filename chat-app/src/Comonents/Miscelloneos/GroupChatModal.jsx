@@ -43,30 +43,30 @@ const GroupChatModal = ({ children }) => {
       toast.error(error.message);
     }
   };
-  const handleSubmit =async() => {
-    if(!groupChatName || !selectedUsers){
-    return toast.error("Please Fill all the Fields")
+  const handleSubmit = async () => {
+    if (!groupChatName || !selectedUsers) {
+      return toast.error("Please Fill all the Fields");
     }
-    try{
-const{data}=await api.post('/chat/group',{
-    name:groupChatName,
-    users:JSON.stringify(selectedUsers.map(p=>p._id))
-})
-setChats([data,...chats])
-onClose()
-toast.success("New Group Created")
-    }catch(error){
-    toast.error("Failed to create chat")
+    try {
+      const { data } = await api.post("/chat/group", {
+        name: groupChatName,
+        users: JSON.stringify(selectedUsers.map((p) => p._id)),
+      });
+      setChats([data, ...chats]);
+      onClose();
+      toast.success("New Group Created");
+    } catch (error) {
+      toast.error("Failed to create chat");
     }
   };
   const handleDelete = (delUser) => {
-    setSelectedUsers(selectedUsers.filter((sel)=>sel._id!==delUser._id))
+    setSelectedUsers(selectedUsers.filter((sel) => sel._id !== delUser._id));
   };
   const handleGroup = (userToAdd) => {
-    if(selectedUsers.includes(userToAdd)){
-    return toast("User already added")
+    if (selectedUsers.includes(userToAdd)) {
+      return toast("User already added");
     }
-    setSelectedUsers([...selectedUsers,userToAdd])
+    setSelectedUsers([...selectedUsers, userToAdd]);
   };
   return (
     <>
@@ -99,12 +99,12 @@ toast.success("New Group Created")
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-            {selectedUsers?.map((u)=>(
-                <UserBadgeItem
+            {selectedUsers?.map((u) => (
+              <UserBadgeItem
                 key={u._id}
                 user={u}
- handleFunction={()=>handleDelete(u)}
-                />
+                handleFunction={() => handleDelete(u)}
+              />
             ))}
             {loading ? (
               <div>Loading...</div>

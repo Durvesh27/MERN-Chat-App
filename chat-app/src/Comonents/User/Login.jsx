@@ -13,8 +13,6 @@ const Login = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userData.email && userData.password) {
@@ -39,12 +37,21 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("ChatToken"));
+    if (token) {
+      router("/chats");
+    } else {
+      router("/");
+    }
+  }, []);
+
   return (
-    <div>
+    <div className="user">
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU0UhELJroPOnXD07iIuaVAP4c_LUokUbklw&usqp=CAU"
         alt=""
-        style={{ width: "430px", height: "100px",margin:"auto",paddingTop:"15px",boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+        className="form-img"
       />
       <form onSubmit={handleSubmit} className="form">
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Login</h2>

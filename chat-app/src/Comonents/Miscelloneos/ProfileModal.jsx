@@ -11,11 +11,11 @@ import {
   ModalOverlay,
   useDisclosure,
   Image,
-Text
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 
-const ProfileModal = ({ user,children }) => {
+const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
@@ -28,9 +28,9 @@ const ProfileModal = ({ user,children }) => {
           onClick={onOpen}
         />
       )}
-      <Modal isOpen={isOpen} onClose={onClose} size='lg' isCentered >
+      <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
         <ModalOverlay />
-        <ModalContent h='410px'>
+        <ModalContent h="410px">
           <ModalHeader
             fontSize="30px"
             display="flex"
@@ -40,10 +40,20 @@ const ProfileModal = ({ user,children }) => {
             {user?.name}
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody display='flex' flexDirection='column' alignItems='center' justifyContent='space-between'>
-            <Image borderRadius='full' boxSize='150px' src={user?.pic} alt={user?.name}/>
-            <Text fontSize={{base:"15px",md:"30px"}}>
-            Email:{user?.email}
+          <ModalBody
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Image
+              borderRadius="full"
+              boxSize="150px"
+              src={user?.pic}
+              alt={user?.name}
+            />
+            <Text fontSize={{ base: "15px", md: "30px" }}>
+              Email:{user?.email}
             </Text>
           </ModalBody>
 
