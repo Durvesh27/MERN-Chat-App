@@ -18,6 +18,7 @@ const Login = () => {
     if (userData.email && userData.password) {
       try {
         const response = await api.post("/user/login", { userData });
+        console.log(response);
         if (response.data.success) {
           setUserData({ email: "", password: "" });
           localStorage.setItem(
